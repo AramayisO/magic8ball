@@ -1,0 +1,19 @@
+:root {
+    --font-accent: 'Henny Penny', cursive;
+    --font-primary: 'Open Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+form label {
+    font-family: var(--font-accent);
+    font-size: 3em;
+}
+
+form button {
+    font-family: var(--font-accent);
+}
