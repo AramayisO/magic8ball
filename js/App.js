@@ -15,7 +15,7 @@ class App extends Component {
             imgPath: '',
             imgAltText: '',
             imgAnimation: '',
-            timers: [],
+            timeoutTimers: [],
         };
 
         this.onQuestionInputChanged = this.onQuestionInputChanged.bind(this);
@@ -24,6 +24,17 @@ class App extends Component {
 
         this.initializeState();
         this.render();
+    }
+
+    initializeState() {
+        this.state.isQuestionAsked = false;
+        this.state.question = '';
+        this.state.alertMsg = '';
+        this.state.imgPath = 'img/magic/magic8ball_start.png';
+        this.state.imgAltText = 'Image of a magic 8 ball.';
+        this.state.imgAnimation = '';
+        this.state.timeoutTimers.forEach(timer => clearTimeout(timer));
+        this.state.timeoutTimers = [];
     }
 
     onQuestionInputChanged(event) {
@@ -52,35 +63,23 @@ class App extends Component {
     ask() {
         this.state.imgAnimation = 'shake';
 
-        this.state.timers.push(
+        this.state.timeoutTimers.push(
             setTimeout(() => {
-                this.state.imgPath = 'img/magic/magic8ball_extra.png';
                 this.state.imgAnimation = 'blink';
                 this.state.imgAltText = 'Blinking magic 8 ball';
                 this.render();
             }, 1000)
         );
 
-        this.state.timers.push(
+        this.state.timeoutTimers.push(
             setTimeout(() => {
                 this.state.imgPath = getRandomMagic8BallImgPath();
                 this.state.imgAnimation = '';
                 this.state.imgAltText = 'Magic 8 ball with random answer.'
                 this.render();
-            }, 6500)
+            }, 6800)
         );
-    }
-
-    initializeState() {
-        this.state.isQuestionAsked = false;
-        this.state.question = '';
-        this.state.alertMsg = '';
-        this.state.imgPath = 'img/magic/magic8ball_start.png';
-        this.state.imgAltText = 'Image of a magic 8 ball.';
-        this.state.imgAnimation = '';
-        this.state.timers.forEach(timer => clearTimeout(timer));
-        this.state.timers = [];
-    }
+    }   
 
     render() {
         if (this.state.alertMsg) {

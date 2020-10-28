@@ -5,7 +5,7 @@ const InputForm = (props) => {
         <form class="text-center my-5 text-light">
             <div class="form-group">
                 <label for="question" class="d-block mb-4">${props.label}</label>
-                <input type="text" class="form-control w-75 mb-2 ${props.isSubmitted ? 'd-none' : 'd-inline-block'}" id="question">
+                <input type="text" class="form-control font-weight-bold w-75 mb-2 ${props.isSubmitted ? 'd-none' : 'd-inline-block'}" id="question">
                 <button type="submit" class="btn btn-outline-light btn-lg ml-2 mb-2 px-4 d-inline-block}">
                     ${props.isSubmitted ? 'Try again' : 'Ask!'}
                 </button>
