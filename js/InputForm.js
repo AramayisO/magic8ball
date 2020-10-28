@@ -2,11 +2,11 @@ import { parser } from './util.js';
 
 const InputForm = (props) => {
     let domString = `
-        <form class="text-center mt-5">
+        <form class="text-center mt-5 text-light">
             <div class="form-group">
                 <label for="question" class="d-block">${props.label}</label>
-                <input type="text" class="form-control w-75 ${props.isSubmitted ? 'd-none' : 'd-inline-block'}" id="question">
-                <button type="submit" class="btn btn-outline-dark ml-2 mb-1 px-4 d-inline-block}">
+                <input type="text" class="form-control w-75 mb-2 ${props.isSubmitted ? 'd-none' : 'd-inline-block'}" id="question">
+                <button type="submit" class="btn btn-outline-light btn-lg ml-2 mb-2 px-4 d-inline-block}">
                     ${props.isSubmitted ? 'Try again' : 'Ask!'}
                 </button>
             </div>
