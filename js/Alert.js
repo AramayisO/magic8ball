@@ -10,10 +10,6 @@ const Alert = (props) => {
     let alert = parser.parseFromString(domString, 'text/html')
                       .querySelector('div');
 
-    if (props.expirationTime) {
-        setTimeout(() => {props.onExpired()}, props.expirationTime)
-    }
-
     return alert;
 }
 

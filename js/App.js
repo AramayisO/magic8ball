@@ -21,7 +21,6 @@ class App extends Component {
         this.onQuestionInputChanged = this.onQuestionInputChanged.bind(this);
         this.onQuestionSubmitted = this.onQuestionSubmitted.bind(this);
         this.onReset = this.onReset.bind(this);
-        this.onAlertExpired = this.onAlertExpired.bind(this);
 
         this.initializeState();
         this.render();
@@ -36,6 +35,7 @@ class App extends Component {
         event.preventDefault();
         if (this.state.question) {
             this.state.isQuestionAsked = true;
+            this.state.alertMsg = '';
             this.ask();
         } else {
             this.state.alertMsg = 'You must type in a question first.';
@@ -46,11 +46,6 @@ class App extends Component {
     onReset(event) {
         event.preventDefault();
         this.initializeState();
-        this.render();
-    }
-
-    onAlertExpired() {
-        this.state.alertMsg = '';
         this.render();
     }
 
@@ -72,7 +67,7 @@ class App extends Component {
                 this.state.imgAnimation = '';
                 this.state.imgAltText = 'Magic 8 ball with random answer.'
                 this.render();
-            }, 5000)
+            }, 6500)
         );
     }
 
@@ -88,6 +83,15 @@ class App extends Component {
     }
 
     render() {
+        if (this.state.alertMsg) {
+            this.children.push(
+                Alert({
+                    type: 'danger',
+                    message: this.state.alertMsg,
+                })
+            );
+        }
+
         this.children.push(
             InputForm({
                 label: this.state.isQuestionAsked ? this.state.question : 'Ask me anything!',
@@ -96,17 +100,6 @@ class App extends Component {
                 onSubmit: this.state.isQuestionAsked ? this.onReset : this.onQuestionSubmitted,
             })
         );
-        
-        if (this.state.alertMsg) {
-            this.children.push(
-                Alert({
-                    type: 'dark',
-                    message: this.state.alertMsg,
-                    expirationTime: 5000,
-                    onExpired: this.onAlertExpired,
-                })
-            );
-        }
 
         this.children.push(
             Magic8Ball({
