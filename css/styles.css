@@ -17,3 +17,104 @@ form label {
 form button {
     font-family: var(--font-accent);
 }
+
+
+/**
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+.shake {
+    -webkit-animation: shake_horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: shake_horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@-webkit-keyframes shake_horizontal {
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+    }
+    80% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+    }
+    90% {
+        -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+    }
+  }
+  @keyframes shake_horizontal {
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+    }
+    80% {
+        -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+    }
+    90% {
+        -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+    }
+}
+
+/**
+ * ----------------------------------------
+ * animation blink
+ * ----------------------------------------
+ */
+.blink {
+	-webkit-animation: blink 3000ms infinite both;
+	        animation: blink 3000ms infinite both;
+}
+
+@-webkit-keyframes blink {
+    0%,
+    50%,
+    100% {
+        opacity: 0;
+    }
+    25%,
+    75% {
+        opacity: 1;
+    }
+}
+@keyframes blink {
+    0%,
+    50%,
+    100% {
+        opacity: 0;
+    }
+    25%,
+    75% {
+        opacity: 1;
+    }
+}
