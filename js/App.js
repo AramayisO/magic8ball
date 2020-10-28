@@ -2,6 +2,7 @@ import Component from './Component.js';
 import InputForm from './InputForm.js';
 import Alert from './Alert.js';
 import Magic8Ball from './Magic8Ball.js';
+import { getRandomMagic8BallImgPath } from './util.js';
 
 class App extends Component {
     constructor(rootElementId) {
@@ -14,6 +15,7 @@ class App extends Component {
             imgPath: '',
             imgAltText: '',
             imgAnimation: '',
+            timers: [],
         };
 
         this.onQuestionInputChanged = this.onQuestionInputChanged.bind(this);
@@ -55,19 +57,23 @@ class App extends Component {
     animateAnswer() {
         this.state.imgAnimation = 'shake';
 
-        setTimeout(() => {
-            this.state.imgPath = 'img/magic/magic8ball_extra.png';
-            this.state.imgAnimation = 'blink';
-            this.state.imgAltText = 'Blinking magic 8 ball';
-            this.render();
-        }, 1000);
+        this.state.timers.push(
+            setTimeout(() => {
+                this.state.imgPath = 'img/magic/magic8ball_extra.png';
+                this.state.imgAnimation = 'blink';
+                this.state.imgAltText = 'Blinking magic 8 ball';
+                this.render();
+            }, 1000)
+        );
 
-        setTimeout(() => {
-            this.state.imgPath = `img/magic/magic8ball_${1 + Math.floor(Math.random() * 20)}.png`;
-            this.state.imgAnimation = '';
-            this.state.imgAltText = 'Magic 8 ball with random answer.'
-            this.render();
-        }, 5000);
+        this.state.timers.push(
+            setTimeout(() => {
+                this.state.imgPath = getRandomMagic8BallImgPath();
+                this.state.imgAnimation = '';
+                this.state.imgAltText = 'Magic 8 ball with random answer.'
+                this.render();
+            }, 5000)
+        );
     }
 
     resetState() {
@@ -77,6 +83,8 @@ class App extends Component {
         this.state.imgPath = 'img/magic/magic8ball_start.png';
         this.state.imgAltText = 'Image of a magic 8 ball.';
         this.state.imgAnimation = '';
+        this.state.timers.forEach(timer => clearTimeout(timer));
+        this.state.timers = [];
     }
 
     render() {
