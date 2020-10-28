@@ -23,7 +23,7 @@ class App extends Component {
         this.onReset = this.onReset.bind(this);
         this.onAlertExpired = this.onAlertExpired.bind(this);
 
-        this.resetState();
+        this.initializeState();
         this.render();
     }
 
@@ -36,7 +36,7 @@ class App extends Component {
         event.preventDefault();
         if (this.state.question) {
             this.state.isQuestionAsked = true;
-            this.animateAnswer();
+            this.ask();
         } else {
             this.state.alertMsg = 'You must type in a question first.';
         }
@@ -45,7 +45,7 @@ class App extends Component {
 
     onReset(event) {
         event.preventDefault();
-        this.resetState();
+        this.initializeState();
         this.render();
     }
 
@@ -54,7 +54,7 @@ class App extends Component {
         this.render();
     }
 
-    animateAnswer() {
+    ask() {
         this.state.imgAnimation = 'shake';
 
         this.state.timers.push(
@@ -76,7 +76,7 @@ class App extends Component {
         );
     }
 
-    resetState() {
+    initializeState() {
         this.state.isQuestionAsked = false;
         this.state.question = '';
         this.state.alertMsg = '';
