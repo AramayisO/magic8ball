@@ -1,8 +1,11 @@
+import Component from './Component.js';
 import InputForm from './InputForm.js';
 import Alert from './Alert.js';
 
-class App {
-    constructor() {
+class App extends Component {
+    constructor(rootElementId) {
+        super(rootElementId);
+
         this.state = {
             question: '',
             isQuestionAsked: false,
@@ -45,13 +48,7 @@ class App {
     }
 
     render() {
-        let container = document.querySelector('#app');
-
-        while (container.firstChild) {
-            container.removeChild(container.firstChild);
-        }
-
-        container.appendChild(
+        this.children.push(
             InputForm({
                 label: this.state.isQuestionAsked ? this.state.question : 'Ask me anything!',
                 isSubmitted: this.state.isQuestionAsked,
@@ -61,7 +58,7 @@ class App {
         );
         
         if (this.state.alertMsg) {
-            container.appendChild(
+            this.children.push(
                 Alert({
                     type: 'dark',
                     message: this.state.alertMsg,
@@ -70,6 +67,8 @@ class App {
                 })
             );
         }
+
+        super.render();
     }
 }
 
