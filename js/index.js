@@ -1,7 +1,19 @@
 import QuestionForm from './QuestionForm.js';
 import Magic8Ball from './Magic8Ball.js';
 
-let ball = new Magic8Ball(
+const onQuestionSubmitted = (promise) => {
+    promise.then(question => {
+        magic8Ball.ask();
+    }).catch(error => {
+        console.log('error:', error);
+    });
+};
+
+const onQuestionReset = () => {
+    magic8Ball.reset();
+}
+
+const magic8Ball = new Magic8Ball(
     document.querySelector('#answer'),
     null
 );
@@ -9,16 +21,7 @@ let ball = new Magic8Ball(
 new QuestionForm(
     document.querySelector('#question'),
     {
-        onSubmit: (promise) => {
-            promise.then(question => {
-                ball.ask();
-            }).catch(error => {
-    
-            });
-        },
-
-        onReset: () => {
-            ball.reset();
-        },
+        onSubmit: onQuestionSubmitted,
+        onReset: onQuestionReset,
     }
 );
