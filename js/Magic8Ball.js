@@ -12,35 +12,73 @@ class Magic8Ball extends Component {
             animation: '',
         };
 
+        // Used to keep track out timers from setTimeout so we can clear timers
+        // in case the component is reset before timers expire.
+        this.timers = [];
+
+        this.onAnswerStart = this.onAnswerStart.bind(this);
+        this.onAnswerEnd = this.onAnswerEnd.bind(this);
+        this.onReset = this.onReset.bind(this);
+
         this.render();
     }
 
-    ask() {
-        setTimeout(() => {
-            this.state.animation = 'shake';
-            this.render();
-        }, 0);
-
-        setTimeout(() => {
-            this.state.animation = 'blink';
-            this.render();
-        }, 1500);
-
-        setTimeout(() => {
-            this.state.animation = '';
-            this.state.imgPath = getRandomMagic8BallImg();
-            this.render();
-        }, getRandomNumberInRange(5000, 10000));   
+    onAnswerStart() {
+        if (this.props.onAnswerStart) {
+            this.props.onAnswerStart();
+        }
     }
 
-    reset() {
+    onAnswerEnd() {
+        if (this.props.onAnswerEnd) {
+            this.props.onAnswerEnd();
+        }
+    }
+
+    onReset() {
+        if (this.props.onReset) {
+            this.props.onReset();
+        }
+
+        this.timers.forEach(timer => clearTimeout(timer));
+        this.timers = [];
+
         this.state = {
             ...this.state,
             imgPath: 'img/magic/magic8ball_start.png',
             altText: 'Blank magic 8 ball.',
             animation: '',
         };
+    }
 
+    ask() {
+        this.timers.push(
+            setTimeout(() => {
+                this.onAnswerStart();
+                this.state.animation = 'shake';
+                this.render();
+            }, 0)
+        );
+
+        this.timers.push(
+            setTimeout(() => {
+                this.state.animation = 'blink';
+                this.render();
+            }, 1500)
+        );
+
+        this.timers.push(
+            setTimeout(() => {
+                this.onAnswerEnd();
+                this.state.animation = '';
+                this.state.imgPath = getRandomMagic8BallImg();
+                this.render();
+            }, 9500)   
+        );
+    }
+
+    reset() {
+        this.onReset();
         this.render();
     }
 
