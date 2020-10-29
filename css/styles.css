@@ -7,7 +7,7 @@ body {
     font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    background:#0E0E0E url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    background:#121212 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
 }
 
 form label {
@@ -121,5 +121,75 @@ form button {
     25%,
     75% {
         opacity: 0;
+    }
+}
+
+
+/**
+ * ----------------------------------------
+ * animation wobble
+ * ----------------------------------------
+ */
+.wobble {
+	-webkit-animation: wobble 0.8s both;
+	        animation: wobble 0.8s both;
+}
+
+@-webkit-keyframes wobble {
+    0%,
+    100% {
+        -webkit-transform: translateX(0%);
+                transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+    }
+    15% {
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+                transform: translateX(-30px) rotate(-6deg);
+    }
+    30% {
+        -webkit-transform: translateX(15px) rotate(6deg);
+                transform: translateX(15px) rotate(6deg);
+    }
+    45% {
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+                transform: translateX(-15px) rotate(-3.6deg);
+    }
+    60% {
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+                transform: translateX(9px) rotate(2.4deg);
+    }
+    75% {
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+                transform: translateX(-6px) rotate(-1.2deg);
+    }
+}
+@keyframes wobble {
+    0%,
+    100% {
+        -webkit-transform: translateX(0%);
+                transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+    }
+    15% {
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+                transform: translateX(-30px) rotate(-6deg);
+    }
+    30% {
+        -webkit-transform: translateX(15px) rotate(6deg);
+                transform: translateX(15px) rotate(6deg);
+    }
+    45% {
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+                transform: translateX(-15px) rotate(-3.6deg);
+    }
+    60% {
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+              transform: translateX(9px) rotate(2.4deg);
+    }
+    75% {
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+                transform: translateX(-6px) rotate(-1.2deg);
     }
 }
