@@ -15,13 +15,24 @@ class Alert extends Component {
         this.defaultExpTime = 5000;
         this.timers = [];
 
+        this.onShow  = this.onShow.bind(this);
         this.onClose = this.onClose.bind(this);
-        this.close = this.close.bind(this);
+        this.close   = this.close.bind(this);
 
         this.render();
     }
 
+    onShow() {
+        if (this.props.onShow) {
+            this.props.onShow();
+        }
+    }
+
     onClose() {
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+
         // Reset state
         this.state = {
             ...this.state,
@@ -48,6 +59,7 @@ class Alert extends Component {
         };
 
         this.render();
+        this.onShow();
 
         // Set a timer to close the alert after some elapsed time.
         this.timers.push(

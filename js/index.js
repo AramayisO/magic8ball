@@ -3,11 +3,21 @@ import Magic8Ball from './Magic8Ball.js';
 import Alert from './Alert.js';
 
 // Sound that will be played when magic 8 ball is asked a question
-let audio = new Audio('audio/twilight_zone.mp3');
+let askSound = new Audio('audio/twilight_zone.mp3');
+let alertSound = new Audio('audio/alert.mp3');
 
 // --------------------------------------------------------------
 // Callback functions that will be passed as props to components
 // --------------------------------------------------------------
+const onAlertShowed = () => {
+    alertSound.currentTime = 0;
+    alertSound.play();
+};
+
+const onAlertClosed = () => {
+    alertSound.pause();
+};
+
 const onQuestionSubmitted = (promise) => {
     promise.then(question => {
         alert.close();
@@ -22,19 +32,23 @@ const onQuestionReset = () => {
 }
 
 const onAnswerStarted = () => {
-    audio.currentTime = 0;
-    audio.play();
+    askSound.currentTime = 0;
+    askSound.play();
 }
 
 const onAnswerEnded = () => {
-    audio.pause();
+    askSound.pause();
 }
 
 // ---------------------------------------------------
 // Create components that will be rendered to the DOM
 // ---------------------------------------------------
 let alert = new Alert(
-    document.querySelector('#alert')
+    document.querySelector('#alert'),
+    {
+        onShow: onAlertShowed,
+        onClose: onAlertClosed,
+    }
 );
 
 let magic8Ball = new Magic8Ball(
