@@ -1,5 +1,6 @@
 import QuestionForm from './QuestionForm.js';
 import Magic8Ball from './Magic8Ball.js';
+import Alert from './Alert.js';
 
 // Sound that will be played when magic 8 ball is asked a question
 let audio = new Audio('audio/twilight_zone.mp3');
@@ -9,9 +10,10 @@ let audio = new Audio('audio/twilight_zone.mp3');
 // --------------------------------------------------------------
 const onQuestionSubmitted = (promise) => {
     promise.then(question => {
+        alert.close();
         magic8Ball.ask();
     }).catch(error => {
-        console.log('error:', error);
+        alert.show({ type: 'danger', message: error });
     });
 };
 
@@ -31,6 +33,10 @@ const onAnswerEnded = () => {
 // ---------------------------------------------------
 // Create components that will be rendered to the DOM
 // ---------------------------------------------------
+let alert = new Alert(
+    document.querySelector('#alert')
+);
+
 let magic8Ball = new Magic8Ball(
     document.querySelector('#answer'),
     {
