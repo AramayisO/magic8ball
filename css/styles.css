@@ -7,7 +7,7 @@ body {
     font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    background:#0E0E0E url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    background:#121212 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
 }
 
 form label {
