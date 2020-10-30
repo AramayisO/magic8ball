@@ -96,7 +96,7 @@ class Magic8Ball extends Component {
         
         let answer = `
             <div class="text-center ${animation}">
-                <img src="${imgPath}" class="img-fluid w-50" alt="${altText}">
+                <img src="${imgPath}" class="img-fluid" alt="${altText}">
             </div>
         `;
     
