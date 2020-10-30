@@ -23,6 +23,15 @@ body {
     font-family: var(--font-accent);
 }
 
+#answer {
+    display: flex;
+    justify-content: center;
+}
+
+#answer div{
+    width: 50%;
+}
+
 @media screen and (max-width: 992px) {
     #question label {
         font-size: 2.7em;
@@ -40,6 +49,10 @@ body {
 
     #question input {
         font-size: 1.2em !important;
+    }
+
+    #answer div{
+        width: 100%;
     }
 }
 
