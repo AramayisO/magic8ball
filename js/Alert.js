@@ -3,6 +3,14 @@ import { parser } from './util.js';
 
 class Alert extends Component {
 
+    /**
+     * Required props:
+     *     - None
+     * 
+     * Optional props:
+     *     - onShow: (void) -> void
+     *     - onClose: (void) -> void
+     */
     constructor(container, props) {
         super(container, props);
 
@@ -46,6 +54,13 @@ class Alert extends Component {
         this.timers = [];
     }
 
+    /**
+     * Show the alert message.
+     * 
+     * @param {string} type One of the Bootstrap alert-* classes.
+     * @param {string} message The message to display in the allert.
+     * @param {number} expTime Time in milliseconds before alert closes.
+     */
     show({ type, message, expTime }) {
         // Close the previous alert if there is one.
         this.onClose();
@@ -67,6 +82,9 @@ class Alert extends Component {
         );
     }
 
+    /**
+     * Close the alert message.
+     */
     close() {
         this.onClose();
         this.render();

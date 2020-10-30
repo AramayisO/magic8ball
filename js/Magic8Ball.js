@@ -3,6 +3,15 @@ import { parser, getRandomNumberInRange, getRandomMagic8BallImg } from './util.j
 
 class Magic8Ball extends Component {
 
+    /**
+     * Required props:
+     *     - None
+     * 
+     * Optional props:
+     *     - onAnswerStart: (void) -> void 
+     *     - onAnswerEnd: (void) -> void
+     *     - onReset: (void) -> void
+     */
     constructor(container, props) {
         super(container, props);
 

@@ -5,12 +5,12 @@ import { parser } from './util.js';
 class QuestionForm extends Component {
 
     /**
-     * Creates a new instance of the class.
+     * Required props:
+     *     - None
      * 
-     * @param {*} container The DOM element that the component will be mounted to.
-     * @param {*} props Object containing additional properties and callbacks.
-     *                      - onSubmit(promise): void
-     *                      - onReset(promise): void
+     * Optional Props:
+     *     - onSubmit: (promise) -> void
+     *     - onReset: (void) -> void
      */
     constructor(container, props) {
         super(container, props);
