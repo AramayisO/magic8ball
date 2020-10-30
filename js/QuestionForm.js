@@ -76,11 +76,13 @@ class QuestionForm extends Component {
         let form = `
             <form class="text-center my-5 text-light">
                 <div class="form-group">
-                    <label for="question" class="d-block mb-4">${label}</label>
-                    <input type="text" id="question" class="form-control font-weight-bold w-75 mb-2 ${submitted ? 'd-none' : 'd-inline-block'}">
-                    <button type="submit" class="btn btn-outline-light btn-lg ml-2 mb-2 px-4 d-inline-block}">
-                        ${submitted ? 'Try again' : 'Ask!'}
-                    </button>
+                    <label for="question-input" class="d-block mb-4">${label}</label>
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <input type="text" id="question-input" class="form-control font-weight-bold mb-4 mb-md-0 ${submitted ? 'd-none' : 'd-inline-block'}">
+                        <button type="submit" class="btn btn-outline-light btn-lg px-5 ml-md-3">
+                            ${submitted ? 'Try again' : 'Ask!'}
+                        </button>
+                    </div>
                 </div>
             </form>
         `;

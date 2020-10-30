@@ -10,19 +10,48 @@ body {
     background:#121212 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
 }
 
-form label {
+#question label {
     font-family: var(--font-accent);
     font-size: 3em;
 }
 
-form input {
+#question input {
     font-size: 1.5em !important;
 }
 
-form button {
+#question button {
     font-family: var(--font-accent);
 }
 
+@media screen and (max-width: 992px) {
+    #question label {
+        font-size: 2.7em;
+    }
+
+    #question input {
+        font-size: 1.3em !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #question label {
+        font-size: 2.5em;
+    }
+
+    #question input {
+        font-size: 1.2em !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #question label {
+        font-size: 2.2em;
+    }
+
+    #question input {
+        font-size: 1.1em !important;
+    }
+}
 
 /**
  * ----------------------------------------
